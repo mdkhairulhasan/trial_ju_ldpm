@@ -1,0 +1,27 @@
+# =============================================================================
+#  mesh_notched_beam_200x40x50.txt  —  stages 1–2 input. Units: mm.
+#  Non-convex test: 200 x 40 x 50 beam with a 15 mm deep notch (test STL). Checks the
+#  outside-tet removal and the boundary recovery across the notch.
+# =============================================================================
+geometry      = stl
+stl_file      = geometry/NotchedBeam_200x40x50_a15.stl
+stl_scale     = 1.0
+gradation     = fuller
+fuller_d0     = 4.75              # smallest simulated diameter [mm]
+fuller_da     = 12.0              # largest diameter [mm]
+fuller_nf     = 0.5               # Fuller exponent
+fuller_va     = 0.45              # TOTAL aggregate volume fraction; simulated = v_a [1 - (d0/d_a)^n_F] = 0.167
+packing       = 1.05
+wall_rule     = pc_half_d
+max_trials    = 20000
+seed          = 1
+ext_d         = 0.0
+h_surf        = 10.0
+beta_gap      = 1.0               # refines the surface spacing inside the notch
+h_floor       = 1.0
+theta_feat    = 30.0
+q_flat        = 1e-8
+n_recovery    = 3
+output_dir    = output/notched_beam_200x40x50
+gate_seed     = true
+write_vtk     = true

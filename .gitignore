@@ -1,0 +1,9 @@
+# run output (written by examples/ to output/<case>/)
+/output/
+*.vtk
+*.vtu
+*.pvd
+# editor / OS
+.vscode/
+.DS_Store
+# Manifest.toml IS committed: it pins the package versions of this environment.

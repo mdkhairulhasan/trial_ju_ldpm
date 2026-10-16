@@ -1,0 +1,26 @@
+# =============================================================================
+#  mesh_dogbone_316x108x72.txt  —  stages 1–2 input. Units: mm.
+#  Your dogbone: 316.65 x 108 x 72 mm, long axis x; gauge 72 x 72 mm over x = ±36,
+#  arcs R 216 mm, grips 108 x 72 mm (input_stl_dogbone.txt of the v4 STL tree).
+# =============================================================================
+geometry      = stl
+stl_file      = geometry/Dogbone_316x108x72.stl   # relative to this file
+stl_scale     = 1.0               # STL units -> mm (1000 if the STL is in metres)
+gradation     = classes
+class_d       = 10.0 6.35 4.75
+class_n       = 94 782 991        # same number density as the prism (~4370 particles here)
+class_vref    = 843750.0
+packing       = 1.05
+wall_rule     = pc_half_d
+max_trials    = 20000
+seed          = 1
+ext_d         = 0.0
+h_surf        = 10.0
+beta_gap      = 1.0
+h_floor       = 1.0
+theta_feat    = 20.0              # 20 (not 30): the 23.6 deg arc-to-grip kinks at x = ±122.3 get nodes; arc facets turn 0.54 deg
+q_flat        = 1e-8
+n_recovery    = 3
+output_dir    = output/dogbone_316x108x72
+gate_seed     = true
+write_vtk     = true

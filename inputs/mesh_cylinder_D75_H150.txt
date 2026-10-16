@@ -1,0 +1,25 @@
+# =============================================================================
+#  mesh_cylinder_D75_H150.txt  —  stages 1–2 input. Units: mm.
+#  Cylinder D 75 x H 150, axis z, same classes and number density as the prism.
+#  N = 128 segments: inscribed-polygon section error 0.04 % (Cylinder_Surface.jl).
+# =============================================================================
+geometry      = cylinder
+cylinder_size = 75 150 128        # D [mm], H [mm], N segments (>= 128); patches 1 lateral, 2 bottom, 3 top
+gradation     = classes
+class_d       = 10.0 6.35 4.75
+class_n       = 94 782 991
+class_vref    = 843750.0          # V_cyl / V_ref = 0.785: counts scale to 74 / 614 / 778
+packing       = 1.05
+wall_rule     = pc_half_d
+max_trials    = 20000
+seed          = 1
+ext_d         = 0.0
+h_surf        = 10.0
+beta_gap      = 1.0
+h_floor       = 1.0
+theta_feat    = 30.0              # > 360/128 = 2.8 deg between lateral facets, so the lateral surface is one patch
+q_flat        = 1e-8
+n_recovery    = 3
+output_dir    = output/cylinder_D75_H150
+gate_seed     = true
+write_vtk     = true

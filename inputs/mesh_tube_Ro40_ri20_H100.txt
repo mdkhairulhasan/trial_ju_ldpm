@@ -1,0 +1,28 @@
+# =============================================================================
+#  mesh_tube_Ro40_ri20_H100.txt  —  stages 1–2 input. Units: mm.
+#  Hole test: tube R_o 40, r_i 20, H 100 (test STL). The bore is a concave surface of
+#  radius 20 mm seen from the material, so h_surf must stay below 0.4 r_i = 8 mm, or
+#  chords between bore nodes are rejected as void-bridging and holes remain
+#  (Gate_Delaunay check 1b). Expected Euler characteristic of the solid: 0.
+# =============================================================================
+geometry      = stl
+stl_file      = geometry/Tube_Ro40_ri20_H100.stl
+stl_scale     = 1.0
+gradation     = classes
+class_d       = 10.0 6.35 4.75
+class_n       = 94 782 991
+class_vref    = 843750.0
+packing       = 1.05
+wall_rule     = pc_half_d
+max_trials    = 20000
+seed          = 1
+ext_d         = 0.0
+h_surf        = 7.0               # < 0.4 r_i = 8 mm (Python mirror: 10 left 2.1 % of V as holes, 7 conformed)
+beta_gap      = 1.0
+h_floor       = 1.0
+theta_feat    = 30.0
+q_flat        = 1e-8
+n_recovery    = 3
+output_dir    = output/tube_Ro40_ri20_H100
+gate_seed     = true
+write_vtk     = true

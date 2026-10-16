@@ -1,0 +1,32 @@
+# =============================================================================
+#  mesh_box_75x75x150.txt  —  stages 1–2 input (key = value  # comment). Units: mm.
+#  Uniaxial compression prism of the multithread CPU tree (input.txt: 75 x 75 x 150,
+#  classes 10 / 6.35 / 4.75 mm with 94 / 782 / 991 particles, packing 1.05).
+# =============================================================================
+# ---- geometry ----
+geometry      = box               # box | cylinder | stl
+box_size      = 75 75 150         # Lx Ly Lz [mm]; patches 1 x-min, 2 x-max, 3 y-min, 4 y-max, 5 z-min, 6 z-max
+# ---- gradation ----
+gradation     = classes           # classes | fuller
+class_d       = 10.0 6.35 4.75    # class diameters [mm]
+class_n       = 94 782 991        # particles per class in class_vref
+class_vref    = 843750.0          # reference volume [mm^3]; counts scale with V / class_vref
+# ---- placement ----
+packing       = 1.05              # pc: |x_i - x_j| >= pc (d_i + d_j)/2 (input.txt row 11)
+wall_rule     = pc_half_d         # pc_half_d: r_wall = pc d/2 (Random_Meshing_New_Boundary.jl) | ceil_half_d: ceil(d/2) (porosity tree)
+max_trials    = 20000             # trials per particle before it is reported as not placed
+seed          = 1                 # 0 = draw a new seed from the OS (printed and written to mesh_nodes.csv)
+# ---- surface nodes ----
+ext_d         = 0.0               # surface-node diameter [mm] (0 = fictitious, input.txt row 5)
+h_surf        = 10.0              # nominal surface-node spacing [mm]. 10 gives ~390 surface nodes here vs 520 for the legacy
+                                  # 8 x 8 x 16 grid (-25 %); 8.6 matches the legacy count (Python mirror, 3 seeds; DECISIONS D11)
+beta_gap      = 1.0               # local spacing = clamp(beta * gap, h_floor, h_surf) across voids and thin walls; 0 = off
+h_floor       = 1.0               # lower bound of the local spacing [mm]
+theta_feat    = 30.0              # feature-edge dihedral angle [deg]
+# ---- Delaunay ----
+q_flat        = 1e-8              # tets with |V| / l_mean^3 below this are flat and removed
+n_recovery    = 3                 # max boundary-recovery passes (non-convex specimens)
+# ---- output and gates ----
+output_dir    = output/box_75x75x150   # relative to the repository root
+gate_seed     = true              # rerun the mesher with seed and seed + 1 (reproducibility gate)
+write_vtk     = true              # mesh.vtk for ParaView
